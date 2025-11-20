@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% extends "base.html" %}
+{% block content %}
+<center>
+  <div class="card" style="width: 400px; height: 350px; align-items: center;justify-content: center; display: flex;margin-top: 100px;">
+  <h2 style="padding-bottom: 30px;">Result</h2>
+  <img class="upload-result-img" src="{{ image_url }}" style="width: 150px; border-radius: 5px;"  alt="Uploaded Image">
+  <p style="font-weight: bold;">
+    <span class="data-label">Prediction:</span>
+    <span class="data-value">{{ result['label'] }}</span>
+  </p>
+  <a class="btn" href="{{ url_for('upload_brain' if mode == 'brain' else 'upload_pneumonia') }}">Upload Another</a>
+</div>
+</center>
+{% endblock %}
+
+</body>
+</html>

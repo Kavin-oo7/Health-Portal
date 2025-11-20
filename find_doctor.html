@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  #map {
+  height: 650px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 40px auto;
+  border-radius: 15px;
+}
+
+  /* Style for search input box if needed */
+  .leaflet-control-geocoder-icon {
+    filter: invert(40%);
+  }
+</style>
+
+<h2 style="text-align:center; color:#6d796d; font-family:sans-serif; padding-top: 15px;">Search Location & Nearby Hospitals</h2>
+<div id="map"></div>
+
+<!-- Leaflet JS and CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Leaflet Control Geocoder CSS and JS for search box -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+<script>
+  // Initialize map
+  var map = L.map('map').setView([20,0], 2);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 18,
+  }).addTo(map);
+
+  // Add Geocoder (search box)
+  var geocoder = L.Control.geocoder({
+    defaultMarkGeocode: false
+  })
+  .on('markgeocode', function(e) {
+    var latlng = e.geocode.center;
+    map.setView(latlng, 15);
+
+    // Clear existing user marker if any
+    if (userMarker) {
+      map.removeLayer(userMarker);
+    }
+
+    // Add user marker at the searched location
+    userMarker = L.marker(latlng, { draggable:true }).addTo(map)
+      .bindPopup("Drag to adjust your location").openPopup();
+
+    addHospitals(latlng);
+
+    // Allow dragging to update hospital markers
+    userMarker.on('dragend', function(ev) {
+      let marker = ev.target;
+      let pos = marker.getLatLng();
+      marker.setLatLng(pos);
+      map.panTo(pos);
+      addHospitals(pos);
+    });
+  })
+  .addTo(map);
+
+  var userMarker = null;
+  var hospitalMarkers = [];
+
+  function addHospitals(location) {
+    // Remove previous hospital markers from map
+    hospitalMarkers.forEach(marker => map.removeLayer(marker));
+    hospitalMarkers = [];
+
+    // Demo hospitals near location (offset approx 0.005 degrees)
+    var hospitals = [
+      [location.lat + 0.005, location.lng + 0.005, "City Hospital"],
+      [location.lat - 0.004, location.lng + 0.006, "Central Clinic"],
+      [location.lat + 0.006, location.lng - 0.005, "Health Care Center"]
+    ];
+
+    hospitals.forEach(function(loc) {
+      let marker = L.marker([loc[0], loc[1]], {
+        icon: L.icon({
+          iconUrl: 'https://maps.gstatic.com/mapfiles/ms2/micons/hospitals.png',
+          iconSize: [32, 32],
+          iconAnchor: [16, 32],
+          popupAnchor: [0, -32]
+        })
+      }).addTo(map).bindPopup(loc[2]);
+      hospitalMarkers.push(marker);
+    });
+  }
+</script>
+{% endblock %}

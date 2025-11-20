@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="dashboard-section" style="max-width: 900px; margin: 60px auto 40px; padding: 32px; background: #232323; border-radius: 18px; box-shadow: 0 10px 32px rgba(40,40,48,0.12); color: #fff;">
+  <h2 style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 2.5rem; margin-bottom: 14px;">Dashboard</h2>
+  <p style="font-size: 1.2rem; margin-bottom: 24px;">Welcome, <strong>{{ user.name }}</strong>!</p>
+
+  {% if uploads and uploads|length > 0 %}
+  <h3 style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.6rem; margin-bottom: 16px;">Your Recent Uploads</h3>
+  <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr style="border-bottom: 2px solid #393939;">
+        <th style="text-align: left; padding: 12px;">File Name</th>
+        <th style="text-align: left; padding: 12px;">Brain Tumor Result</th>
+        <th style="text-align: left; padding: 12px;">Pneumonia Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for upload in uploads %}
+      <tr style="border-bottom: 1px solid #393939;">
+        <td style="padding: 10px 12px; font-family: 'Inter', sans-serif;">{{ upload.filename }}</td>
+        <td style="padding: 10px 12px;">
+          {% if upload.result_brain %}
+            <span style="color: #fff; padding: 6px 14px; border-radius: 12px; font-weight: 600;">
+              {{ upload.result_brain }}
+            </span>
+          {% else %}
+            <span style="color: #888;">N/A</span>
+          {% endif %}
+        </td>
+        <td style="padding: 10px 12px;">
+          {% if upload.result_pneumonia %}
+            <span style="color: #fff; padding: 6px 14px; border-radius: 12px; font-weight: 600;">
+              {{ upload.result_pneumonia }}
+            </span>
+          {% else %}
+            <span style="color: #888;">N/A</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #c0c0c0;">
+    You have no uploads yet. <a href="{{ url_for('upload_brain') }}" style="color: #F2A1FF; font-weight: 600;">Start by uploading an MRI scan</a> or <a href="{{ url_for('upload_pneumonia') }}" style="color: #F2A1FF; font-weight: 600;">a chest X-ray</a>.
+  </p>
+  {% endif %}
+</section>
+{% endblock %}

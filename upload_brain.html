@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<center>
+<div class="card" style="width: 400px; height: 350px; align-items: center;justify-content: center; display: flex;margin-top: 100px;">
+  <h2 style="padding-bottom: 50px;">Brain Tumor Detection🧠</h2>
+  <center>
+    <p style="padding-bottom: 20px;">Upload an MRI scan to check for brain tumors.</p>
+  </center>
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" style="padding-bottom: 20px;" name="file" required>
+    <button class="btn" type="submit">Upload MRI Scan</button>
+  </form>
+</div>
+</center>
+
+{% endblock %}
+

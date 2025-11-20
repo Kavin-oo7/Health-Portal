@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+<section style="padding-top: 60px; padding-bottom: 50px; max-width: 900px; margin: 0 auto;">
+  <h1 style="
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 2.8rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+    line-height: 1.18;
+    color: #fff;
+    text-align: center;
+  ">AI-Powered Health Screening Services</h1>
+
+  <p style="
+    color: #CFCFCF;
+    font-size: 1.18rem;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  ">
+    Our cutting-edge AI platform offers fast, reliable screening for critical medical conditions using MRI and X-ray analysis, empowering you with supportive insights and faster diagnosis pathways.
+  </p>
+
+  <h2 style="
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.95rem;
+    margin-bottom: 12px;
+    color: #0800ff;
+  ">Brain Tumor Overview</h2>
+
+  <p style="
+    max-width: 700px;
+    margin-bottom: 28px;
+    color: #B0B0B0;
+    font-size: 1.04rem;
+    line-height: 1.55;
+  ">
+    Brain tumors arise from abnormal brain cell growth. They can be benign or cancerous and cause symptoms like headaches, seizures, and cognitive impairments. Early detection via imaging is crucial.
+  </p>
+
+  <p style="
+    max-width: 700px;
+    margin-bottom: 28px;
+    color: #B0B0B0;
+    font-size: 1.04rem;
+    line-height: 1.55;
+  ">
+    Our AI-enhanced MRI screening model assists physicians by accurately identifying suspicious tumor areas, facilitating quicker and more reliable clinical decisions.
+  </p>
+
+  <h2 style="
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.95rem;
+    margin-bottom: 12px;
+    color: #0800ff;
+  ">Pneumonia Overview</h2>
+
+  <p style="
+    max-width: 700px;
+    margin-bottom: 28px;
+    color: #B0B0B0;
+    font-size: 1.04rem;
+    line-height: 1.55;
+  ">
+    Pneumonia is an infection that inflames lung air sacs, causing cough, fever, and breathlessness. It is a serious illness particularly risky to young children and the elderly.
+  </p>
+
+  <p style="
+    max-width: 700px;
+    margin-bottom: 36px;
+    color: #B0B0B0;
+    font-size: 1.04rem;
+    line-height: 1.55;
+  ">
+    Our AI chest X-ray analysis helps medical teams quickly identify pneumonia cases for effective treatment, helping reduce complications and hospitalizations.
+  </p>
+
+  <div style="text-align:center;">
+    <a class="btn" href="{{ url_for('upload_brain') }}" style="margin-right: 20px; padding: 14px 30px;">Start Brain Tumor Test</a>
+    <a class="btn" href="{{ url_for('upload_pneumonia') }}" style="padding: 14px 30px;">Start Pneumonia Test</a>
+  </div>
+</section>
+{% endblock %}

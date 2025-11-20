@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  .auth-box {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 32px 40px;
+    background-color: #2c2c2c;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .auth-box h2 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .auth-box label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #ddd;
+  }
+  .auth-box input[type="text"],
+  .auth-box input[type="email"],
+  .auth-box input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #444;
+    color: #eee;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  .auth-box input::placeholder {
+    color: #bbb;
+  }
+  .auth-box input:focus {
+    outline: none;
+    background-color: #555;
+  }
+  .auth-box .btn-primary {
+    width: 100%;
+    padding: 14px 0;
+    background-color: #6f42c1;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .auth-box .btn-primary:hover,
+  .auth-box .btn-primary:focus {
+    background-color: #592dbc;
+  }
+</style>
+
+<div class="auth-box">
+  <h2>Register</h2>
+  <form method="post" class="mt-3">
+    <label for="name">Name</label>
+    <input class="form-control" type="text" name="name" placeholder="Your full name" required autocomplete="name" />
+
+    <label for="email">Email</label>
+    <input class="form-control" type="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+
+    <label for="password">Password</label>
+    <input class="form-control" type="password" name="password" placeholder="Choose a strong password" required autocomplete="new-password" />
+
+    <button class="btn btn-primary" type="submit">Register</button>
+  </form>
+</div>
+{% endblock %}
